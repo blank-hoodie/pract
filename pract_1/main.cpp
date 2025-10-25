@@ -1,4 +1,6 @@
 #include <iostream>
+#include <limits>
+
 bool Pyth(unsigned a, unsigned b, unsigned c);
 unsigned min_u();
 unsigned max_u();
