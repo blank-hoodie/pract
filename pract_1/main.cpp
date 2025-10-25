@@ -2,10 +2,13 @@
 
 int main() {
 	using ut = unsigned;
-	ut x = 0;
-	std::cout << a;
+	ut a = 0;
+	size_t count=0;
+	while (std::cin >> a) {
+		count++;
+	}
 	if (std::cin.eof()) {
-		std::cout << "1";
+		std::cout << count;
 		std::cout << "\n";
 	} else if (std::cin.fail()) {
 		std::cerr << "input err";
