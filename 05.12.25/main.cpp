@@ -25,6 +25,18 @@ namespace top {
     p_t next(p_t) const override;
     p_t d;
   }
+  struct Line
+  {
+        Line(p_t start, p_t end);
+    Line(int x1, int y1, int x2, int y2);
+    
+    p_t begin() const override;
+    p_t next(p_t current) const override;
+    bool end(p_t current) const override;
+    
+  }
+  
+  
   size_t points(const Idrow& d, p_t** pts, size_t& s);
   f_t frame(const p_t* pts, size_t s);
   char* canvas(f_t fr, char fill);
@@ -83,7 +95,37 @@ topit::Dot::Dot(p_t dd) {
   IDrow(); 
   d{dd};
 }
-bool topit::operator==(p_t a, p_t b) {
+top::Line::Line(int x1, int y1, int x2, int y2) :
+    IDrow(),
+    start{x1, y1},
+    end{x2, y2},
+    current{0, 0},
+    first{true}
+{}
+
+top::Line::Line(p_t start_end) :
+    IDrow(),
+    start{start_end},
+    end{start_end},
+    current{0, 0},
+    first{true}
+{}
+top::p_t top::Line::begin() const {
+    first = true;
+    return start;
+}
+
+top::p_t top::Line::next(p_t prev) const {
+    if (first) {
+        first = false;
+        current = start;
+        return start;
+    }
+
+    if (prev == end) {
+        throw std::logic_error("bebebe");
+    }
+bool topit::operator==(p_t a, p_t b) 
   return a.x == b.x && a.y == b.y;
 }
 bool topit::operator!=(p_t a, p_t b) {
